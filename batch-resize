@@ -1,0 +1,20 @@
+set -x
+
+from=$1
+to=$2
+size=$3
+prefix=$4
+ext=$5
+
+cd $from
+mkdir -p $to
+
+i=1
+
+for file in *.$ext
+do
+  ext="${file##*.}"
+  convert $file -resize $size "$to$prefix$i.$ext"
+  i=$((i+1))
+done
+
